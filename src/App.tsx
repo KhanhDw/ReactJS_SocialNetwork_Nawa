@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
 import { publicRoutes } from "./routes";
-import type { RouteType } from "./routes";
+import type { RouteType } from "./types/route";
 import { DefaultLayout } from "./components/Layout";
 
 function App() {

@@ -1,7 +1,8 @@
-import type { ReactNode } from 'react';
+// modules
+import type { JSX, ReactNode } from "react";
 
-export interface RouteConfig {
+export type RouteType = {
   path: string;
-  element: ReactNode;
-  children?: RouteConfig[];
-}
+  component: () => JSX.Element;
+  layout?: (({ children }: { children: ReactNode }) => JSX.Element) | null;
+};
