@@ -1,0 +1,42 @@
+/* Ẩn scrollbar nhưng vẫn cho scroll */
+ .sidebar_home {
+  overflow: auto;
+  scrollbar-width: none;         
+  -ms-overflow-style: none;      
+}
+
+.sidebar_home::-webkit-scrollbar {
+  display: none;                 
+} 
+
+
+
+/* Chrome, Safari */
+.home_page1::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Thanh trượt */
+.home_page1::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Hover lên thanh trượt */
+.home_page1::-webkit-scrollbar-thumb:hover {
+  background: #9a1515;
+}
+
+/* Track: phần nền của scrollbar */
+.home_page1::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+/* Ẩn mũi tên ↑ ↓ */
+.home_page1::-webkit-scrollbar-button {
+  display: none;
+}
+
+

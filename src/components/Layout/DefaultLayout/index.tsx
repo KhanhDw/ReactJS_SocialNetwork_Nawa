@@ -9,9 +9,9 @@ interface DefaultLayoutProps {
 
 function DefaultLayout({children}:DefaultLayoutProps) {
   return (
-   <div className="flex flex-col">
+   <div className="flex flex-col justify-between w-screen h-screen">
       <Header />
-      <div className="flex-grow border-2 border-gray-100">
+      <div className="flex-grow overflow-y-auto">
         {children}
       </div>
       <Footer />

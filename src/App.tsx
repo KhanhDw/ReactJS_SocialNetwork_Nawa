@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { publicRoutes } from "./routes";
 import type { RouteType } from "./types/route";
 import { DefaultLayout } from "./components/Layout";
+import "./App.css";
 
 function App() {
     return (
