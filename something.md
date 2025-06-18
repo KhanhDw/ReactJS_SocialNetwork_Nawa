@@ -1,31 +1,12 @@
-# trái
+cách dùng docker cho reactJS
 
-tên user - link đến trang cá nhân khi click vào 
-nhóm
-tin nhắn
-theo dõi
-đã lưu
-học hỏi
+1. build dự án : docker build -t <Name Project> .
+2. run dự án : docker run -d -p 5173:5173 --name <tên dự án hiển thị trên docker dashboard> <Name Project>
 
+3. build dự án : docker build -t nawa .
+4. run dự án : docker run -d -p 5173:5173 --name nawa-app nawa
 
+để xóa một image trong docker cần làm
 
-# giữa
-
-bảng tin
-
-
-# phải
-
-tạo bài viết
-    bài viết : trang bìa (thêm bìa) - tiêu đề - nôi dung - thiết lập bản quyền
-    hình ảnh : tiêu đề - giới thiệu hình ảnh - tải ảnh lên - thiết lập bản quyền
-    video : là link của youtube hoặc tiktok
-
-
-
-
---------------------------------------
-
-          : isScrolled_top > 0
-                                ? "max-h-0 opacity-0"
-                                : "max-h-screen opacity-100"
+1. docker stop containID
+2. docker rm containID

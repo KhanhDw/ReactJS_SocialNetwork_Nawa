@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../assets/css/Home.css";
+import "../assets/css/home.css";
 import { useLocation } from "react-router-dom";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { RiUserFollowFill } from "react-icons/ri";
@@ -63,15 +63,21 @@ function Home() {
     const location = useLocation();
 
     // Use useState for hideHeader
-   
-   // Use useState for hideHeader
+
+    // Use useState for hideHeader
     const [hideHeader, setHideHeader] = useState<boolean>(
-        location.pathname === "/chat" || location.pathname === "/learning" || location.pathname === "/community"
+        location.pathname === "/chat" ||
+            location.pathname === "/learning" ||
+            location.pathname === "/community"
     );
 
     // Update hideHeader when location.pathname changes
     useEffect(() => {
-        setHideHeader(location.pathname === "/chat" || location.pathname === "/learning" || location.pathname === "/community");
+        setHideHeader(
+            location.pathname === "/chat" ||
+                location.pathname === "/learning" ||
+                location.pathname === "/community"
+        );
     }, [location.pathname]);
 
     const [isActiveShowListUserChat, setIsActiveShowListUserChat] =
@@ -526,7 +532,7 @@ function Home() {
                             >
                                 <AiOutlineSearch className=" w-12 h-12 text-[#a898af]" />
                             </Button>
-                     </div>
+                        </div>
                     </div>
 
                     {/* luôn hiên thị */}
@@ -578,7 +584,9 @@ function Home() {
                         location.pathname === "/learning"
                             ? "overflow-hidden"
                             : ""
-                    } ${location.pathname !== "/learning" ? "pt-4" : ""} home_page1 flex-2 min-h-screen overflow-hidden scroll-container bg-gray-800 px-4  border-x-3 border-gray-800  `}
+                    } ${
+                        location.pathname !== "/learning" ? "pt-4" : ""
+                    } home_page1 flex-2 min-h-screen overflow-hidden scroll-container bg-gray-800 px-4  border-x-3 border-gray-800  `}
                 >
                     {/* LIST POST = url: / */}
                     {location.pathname === "/" && (
@@ -618,7 +626,12 @@ function Home() {
                         top: hideHeader ? 0 : `${isScrolled_top}px`,
                         height: hideHeader ? "100vh" : isScrolled_height,
                     }}
-                    className={`${location.pathname === "/chat" || location.pathname === "/" ? "pr-4 pt-4" : ""} sidebar_home flex-1 bg-gray-800 sticky overflow-auto border-amber-100 cursor-default`}
+                    className={`${
+                        location.pathname === "/chat" ||
+                        location.pathname === "/"
+                            ? "pr-4 pt-4"
+                            : ""
+                    } sidebar_home flex-1 bg-gray-800 sticky overflow-auto border-amber-100 cursor-default`}
                 >
                     {/* post new */}
                     {location.pathname === "/" && (
@@ -735,15 +748,14 @@ function Home() {
                         <div
                             className={`h-[calc(100vh-5vh)] w-full mx-auto flex flex-col bg-[#1c1a2c] rounded-2xl`}
                         >
-                            <FilterSidebar
-                            />
+                            <FilterSidebar />
                         </div>
                     )}
                     {hideHeader && location.pathname === "/community" && (
                         <div
                             className={`h-screen w-full  mx-auto flex flex-col bg-[#1c1a2c] rounded-2xl`}
                         >
-                            <RightSide/>
+                            <RightSide />
                         </div>
                     )}
                 </div>
