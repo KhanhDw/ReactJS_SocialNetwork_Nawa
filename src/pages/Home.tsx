@@ -20,7 +20,7 @@ import { BsPostcardHeartFill } from "react-icons/bs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Following from "@/components/feature/following/following";
 import FollowMe from "@/components/feature/following/followMe";
-import { MdWork } from "react-icons/md";
+// import { MdWork } from "react-icons/md";
 import FilterSidebar from "@/components/feature/FilterSidebar/AdvancedFilterSidebar";
 import "@/assets/css/scrollbarCustomer.css";
 import ListLearning from "@/components/feature/Learning/listLearning";
@@ -29,6 +29,7 @@ interface Post {
     id: string;
     author: {
         name: string;
+        group: string;
         avatar: string;
         timestamp: string;
     };
@@ -62,6 +63,7 @@ function Home() {
     const [isOpenComment, setIsOpenComment] = useState<boolean>(false);
     const location = useLocation();
 
+    // const [message, setMessage] = useState("");
     // Use useState for hideHeader
 
     // Use useState for hideHeader
@@ -78,6 +80,12 @@ function Home() {
                 location.pathname === "/learning" ||
                 location.pathname === "/community"
         );
+        // const sayHello = async () => {
+        //     const res = await fetch("http://localhost:3000/api/message");
+        //     const text = await res.text();
+        //     setMessage(text);
+        // };
+        // sayHello();
     }, [location.pathname]);
 
     const [isActiveShowListUserChat, setIsActiveShowListUserChat] =
@@ -114,12 +122,12 @@ function Home() {
             url: "/learning",
             icon: <RiFlowerFill className="w-8 h-8" />,
         },
-        {
-            id: 6,
-            name: "Việc làm",
-            url: "/",
-            icon: <MdWork className="w-8 h-8" />,
-        },
+        // {
+        //     id: 6,
+        //     name: "Việc làm",
+        //     url: "/",
+        //     icon: <MdWork className="w-8 h-8" />,
+        // },
     ];
 
     const posts: Post[] = [
@@ -127,6 +135,7 @@ function Home() {
             id: "1",
             author: {
                 name: "Nguyễn Văn Thành",
+                group: "Nguyễn Văn ThànhNguyễn Văn ThànhNguyễn Văn Thành",
                 avatar: "/bannerLogin.png",
                 timestamp: "Jun 12, 2022",
             },
@@ -153,6 +162,7 @@ function Home() {
             id: "2",
             author: {
                 name: "Nguyễn Văn Thành",
+                group: "Nguyễn Văn Thành",
                 avatar: "/bannerLogin.png",
                 timestamp: "Jun 10, 2022",
             },
@@ -179,6 +189,7 @@ function Home() {
             id: "3",
             author: {
                 name: "Nguyễn Văn Thành",
+                group: "Nguyễn Văn Thành",
                 avatar: "/bannerLogin.png",
                 timestamp: "Jun 8, 2022",
             },
@@ -617,7 +628,17 @@ function Home() {
                     {/* learning = url: /learning */}
                     {location.pathname === "/learning" && <ListLearning />}
                     {/* learning = url: /community */}
-                    {location.pathname === "/community" && <h1>Community</h1>}
+                    {location.pathname === "/community" && (
+                        <div>
+                            {posts.map((post) => (
+                                <PostCard
+                                    key={post.id}
+                                    post={post}
+                                    setIsOpenComment={setIsOpenComment}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 {/* sidebar right */}
@@ -666,20 +687,20 @@ function Home() {
                         </div>
                     )}
                     {/* comment */}
-                    {!hideHeader && (
+                    {
                         <div
                             className={`${isOpenComment ? "block" : "hidden"} ${
                                 isScrolled_top > 40
                                     ? "h-[calc(100vh-12vh)]"
                                     : "h-[calc(100vh-5vh)]"
-                            } w-full mx-auto flex flex-col bg-[#1c1a2c] rounded-2xl`}
+                            } w-full mx-auto flex flex-col bg-[#1c1a2c] rounded-2xl m-4`}
                         >
                             <Comment
                                 isOpenComment={isOpenComment}
                                 setIsOpenComment={setIsOpenComment}
                             />
                         </div>
-                    )}
+                    }
                     {/* chat - list user and group */}
                     {hideHeader && location.pathname === "/chat" && (
                         <div
@@ -753,7 +774,9 @@ function Home() {
                     )}
                     {hideHeader && location.pathname === "/community" && (
                         <div
-                            className={`h-screen w-full  mx-auto flex flex-col bg-[#1c1a2c] rounded-2xl`}
+                            className={`${
+                                isOpenComment ? "hidden" : "block"
+                            } h-screen w-full  mx-auto flex flex-col bg-[#1c1a2c] rounded-2xl`}
                         >
                             <RightSide />
                         </div>

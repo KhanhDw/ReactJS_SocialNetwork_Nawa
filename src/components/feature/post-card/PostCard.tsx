@@ -19,6 +19,7 @@ interface Post {
     id: string;
     author: {
         name: string;
+        group: string;
         avatar: string;
         timestamp: string;
     };
@@ -48,39 +49,38 @@ interface PostCardProps {
 
 function PostCard({ post, setIsOpenComment }: PostCardProps) {
     const [isExpanded, setIsExpanded] = useState(false);
- const [lightboxOpen, setLightboxOpen] = useState(false)
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const shouldShowExpandButton = post.content.length > 150
+    const shouldShowExpandButton = post.content.length > 150;
     const setIsOpenCommentHandleClick = (): void => {
         setIsOpenComment((prev: boolean) => !prev);
     };
 
-     const toggleExpanded = () => {
-    setIsExpanded(!isExpanded)
-  }
+    const toggleExpanded = () => {
+        setIsExpanded(!isExpanded);
+    };
 
- const openLightbox = (index: number) => {
-    setCurrentImageIndex(index)
-    setLightboxOpen(true)
-  }
+    const openLightbox = (index: number) => {
+        setCurrentImageIndex(index);
+        setLightboxOpen(true);
+    };
 
-  const closeLightbox = () => {
-    setLightboxOpen(false)
-  }
+    const closeLightbox = () => {
+        setLightboxOpen(false);
+    };
 
-  const navigateImage = (index: number) => {
-    setCurrentImageIndex(index)
-  }
+    const navigateImage = (index: number) => {
+        setCurrentImageIndex(index);
+    };
 
     return (
         <>
             <div>
                 <div className="w-full max-w-full p-4 bg-[#1c1a2c] border border-gray-600 rounded-lg shadow-md text-white mb-2">
                     <div className="flex flex-col gap-2">
-                        <div className="flex items-center justify-between  mb-2">
-                            <div className="flex items-center gap-2">
+                        <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2 w-10/12 overflow-hidden">
                                 <img
                                     className="w-8 h-8 rounded-full"
                                     src={
@@ -89,16 +89,22 @@ function PostCard({ post, setIsOpenComment }: PostCardProps) {
                                     }
                                     alt={post.author.name}
                                 />
-                                <div className="flex flex-col">
-                                    <p className="text-sm font-bold text-gray-300">
-                                        {post.author.name}
+                                <div className="flex flex-col ">
+                                    <p className="text-sm font-bold text-gray-300 line-clamp-1">
+                                        {post.author.name}{" "}
+                                        <span className="font-thin">
+                                            thuộc nhóm{" "}
+                                        </span>
+                                        <span className="">
+                                            {post.author.group}
+                                        </span>
                                     </p>
                                     <p className="text-sm font-light text-gray-400">
                                         {post.author.timestamp}
                                     </p>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex justify-end gap-2 w-2/12">
                                 <button className="text-sm font-bold text-gray-300 hover:text-gray-900 hover:cursor-pointer hover:bg-yellow-500 rounded-sm p-1 duration-300 transition-all ease-in-out">
                                     Theo dõi
                                 </button>
@@ -117,16 +123,15 @@ function PostCard({ post, setIsOpenComment }: PostCardProps) {
                                 }`}
                             >
                                 {post.content}
-                                
                             </h5>
                             {shouldShowExpandButton && (
-                  <button
-                    onClick={toggleExpanded}
-                    className="text-sm text-blue-400 hover:text-blue-300 mt-1 font-medium transition-colors duration-200"
-                  >
-                    {isExpanded ? "Thu gọn" : "Xem thêm"}
-                  </button>
-                )}
+                                <button
+                                    onClick={toggleExpanded}
+                                    className="text-sm text-blue-400 hover:text-blue-300 mt-1 font-medium transition-colors duration-200"
+                                >
+                                    {isExpanded ? "Thu gọn" : "Xem thêm"}
+                                </button>
+                            )}
                         </div>
                     </div>
                     {/* Images Section */}
@@ -240,14 +245,14 @@ function PostCard({ post, setIsOpenComment }: PostCardProps) {
                         </div>
                     </div>
                 </div>
-                 {/* Image Lightbox */}
-      <ImageLightbox
-        images={post.images || []}
-        currentIndex={currentImageIndex}
-        isOpen={lightboxOpen}
-        onClose={closeLightbox}
-        onNavigate={navigateImage}
-      />
+                {/* Image Lightbox */}
+                <ImageLightbox
+                    images={post.images || []}
+                    currentIndex={currentImageIndex}
+                    isOpen={lightboxOpen}
+                    onClose={closeLightbox}
+                    onNavigate={navigateImage}
+                />
             </div>
         </>
     );
